@@ -1,0 +1,9 @@
+b:
+	mkdir -d bin
+	g++ -o bin/program.out src/*
+
+r:
+	bin/program.out
+
+c:
+	rm bin/*
