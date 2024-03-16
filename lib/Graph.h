@@ -39,6 +39,12 @@ class Graph {
   */
   ~Graph();
 
+  /**
+   * Returns a string with the path to the file with this graph information
+   * @returns The path to the source file of the graph
+  */
+  const std::string& sourcePath() const;
+
  private:
   std::vector<GraphNode*> nodes;
   std::string source_path;

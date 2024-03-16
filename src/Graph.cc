@@ -42,3 +42,7 @@ Graph::~Graph() {
     nodes[current_node] = nullptr;
   }
 }
+
+const std::string& Graph::sourcePath() const {
+  return source_path;
+}

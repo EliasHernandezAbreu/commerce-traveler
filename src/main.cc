@@ -81,6 +81,8 @@ int main(int argc, char** argv) {
     int greedy_cost = greedy_ct.solve(*graphs[current_graph], greedy_solution, time_limit);
     std::vector<std::string> dynamic_solution;
     int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], dynamic_solution, time_limit);
+
+    printf("File: %s\n", graphs[current_graph]->sourcePath().c_str());
   }
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
