@@ -11,7 +11,11 @@
 
 #include "../lib/Graph.h"
 
-Graph::Graph(std::ifstream& input) {
+Graph::Graph(const std::string& file_path) {
+  std::ifstream input(file_path);
+  if (input.bad()) {
+    throw std::runtime_error("Cant open input file");
+  }
   int nodes_size;
   input >> nodes_size;
   for (int current_node = 0; current_node < nodes_size; current_node++) {

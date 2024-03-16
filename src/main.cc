@@ -75,9 +75,12 @@ int main(int argc, char** argv) {
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
 
-    std::vector<std::string> brute_force_solution = brute_force_ct.solve(*graphs[current_graph], time_limit);
-    std::vector<std::string> greedy_solution = greedy_ct.solve(*graphs[current_graph], time_limit);
-    std::vector<std::string> dynamic_solution = dynamic_ct.solve(*graphs[current_graph], time_limit);
+    std::vector<std::string> brute_force_solution;
+    int brute_force_cost = brute_force_ct.solve(*graphs[current_graph], brute_force_solution, time_limit);
+    std::vector<std::string> greedy_solution;
+    int greedy_cost = greedy_ct.solve(*graphs[current_graph], greedy_solution, time_limit);
+    std::vector<std::string> dynamic_solution;
+    int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], dynamic_solution, time_limit);
   }
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {

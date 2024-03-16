@@ -30,9 +30,9 @@ class Graph {
 
   /**
    * Initializates the object from an input stream
-   * @param input The stream to get the definition from
+   * @param file_path The path to the file with the information
   */
-  Graph(std::ifstream& input);
+  Graph(const std::string& file_path);
 
   /**
    * Destructs the graph nodes
@@ -41,4 +41,5 @@ class Graph {
 
  private:
   std::vector<GraphNode*> nodes;
+  std::string source_path;
 };

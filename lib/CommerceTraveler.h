@@ -23,8 +23,9 @@ class CommerceTraveler {
   /**
    * Solves the commerce traveler problem
    * @param graph The graph to solve
+   * @param path The resulting path
    * @param time_limit The time limit
    * @returns The resulting path 
   */
-  virtual std::vector<std::string> solve(const Graph& graph, int time_limit = FIVE_MINUTES) const = 0;
+  virtual int solve(const Graph& graph, std::vector<std::string>& path, int time_limit = FIVE_MINUTES) const = 0;
 };

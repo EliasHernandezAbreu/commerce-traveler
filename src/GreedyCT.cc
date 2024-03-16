@@ -14,8 +14,6 @@
 
 #include "./../lib/GreedyCT.h"
 
-std::vector<std::string> GreedyCommerceTraveler::solve(const Graph& graph, int time_limit) const {
-  std::vector<std::string> result;
-  
-  return result;
+int GreedyCommerceTraveler::solve(const Graph& graph, std::vector<std::string>& path, int time_limit) const {
+  return 0;
 }

@@ -22,12 +22,11 @@ Graph** graphsFromFolder(const std::string& folder_path, int& graphs_size) {
   Graph** graphs = new Graph*[graphs_size];
   int current_entry = 0;
   for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(folder_path)) {
-    std::ifstream input_file(entry.path().c_str());
-    if (input_file.bad()) {
+    try {
+      graphs[current_entry] = new Graph(entry.path().string());
+    } catch (std::runtime_error e) {
       printf("Couldn't open file %s.\n", entry.path().c_str());
-      continue;
     }
-    graphs[current_entry] = new Graph(input_file);
     current_entry++;
   }
   return graphs;
