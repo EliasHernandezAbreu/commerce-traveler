@@ -14,6 +14,8 @@
 
 #include "./../lib/BruteForceCT.h"
 
-std::vector<std::string> BruteForceCommerceTraveler::solve(const Graph& graph, int time_limit = FIVE_MINUTES) const {
-
+std::vector<std::string> BruteForceCommerceTraveler::solve(const Graph& graph, int time_limit) const {
+  std::vector<std::string> result;
+  
+  return result;
 }

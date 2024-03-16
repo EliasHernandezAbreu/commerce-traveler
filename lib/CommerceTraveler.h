@@ -16,7 +16,7 @@
 
 #include "Graph.h"
 
-#define FIVE_MINUTES (int)300000
+#define FIVE_MINUTES (long long)300000
 
 class CommerceTraveler {
  public:

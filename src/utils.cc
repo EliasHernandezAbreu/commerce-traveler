@@ -15,6 +15,9 @@
 
 std::vector<Graph> graphsFromFolder(const std::string& folder_path) {
   std::vector<Graph> graphs;
+  if (!std::filesystem::is_directory(folder_path)) {
+    throw std::runtime_error("Folder is not a directory!");    
+  }
   for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(folder_path)) {
     std::ifstream input_file(entry.path().c_str());
     if (input_file.bad()) {
