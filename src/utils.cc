@@ -24,7 +24,9 @@ std::vector<Graph> graphsFromFolder(const std::string& folder_path) {
       printf("Couldn't open file %s.\n", entry.path().c_str());
       continue;
     }
+    printf("hi\n");
     graphs.push_back(Graph(input_file));
+    printf("bye\n");
   }
   return graphs;
 }

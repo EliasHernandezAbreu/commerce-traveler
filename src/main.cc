@@ -72,8 +72,13 @@ int main(int argc, char** argv) {
   DynamicCommerceTraveler dynamic_ct;
 
   for (Graph current_graph : graphs) {
+
+    
+
     std::vector<std::string> brute_force_solution = brute_force_ct.solve(current_graph, time_limit);
     std::vector<std::string> greedy_solution = greedy_ct.solve(current_graph, time_limit);
     std::vector<std::string> dynamic_solution = dynamic_ct.solve(current_graph, time_limit);
   }
+
+  return 0;
 }
