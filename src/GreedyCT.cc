@@ -16,7 +16,7 @@
 #include "../lib/utils.h"
 #include "./../lib/GreedyCT.h"
 
-int GreedyCommerceTraveler::solve(const Graph& graph, std::string& path, int time_limit) const {
+int GreedyCommerceTraveler::solve(const Graph& graph, std::string& path, long int& time_took, long int time_limit) const {
   TIME_POINT starting_time = NOW;
   std::vector<const GraphNode*> used_nodes;
   const GraphNode* current_node = graph.get(0);
@@ -26,6 +26,7 @@ int GreedyCommerceTraveler::solve(const Graph& graph, std::string& path, int tim
 
   for (int current_node_index = 1; current_node_index < graph.size(); current_node_index++) {
     if (TIME_DELTA(starting_time, NOW) > time_limit) {
+      time_took = -1;
       return cost;
     }
 
@@ -58,5 +59,6 @@ int GreedyCommerceTraveler::solve(const Graph& graph, std::string& path, int tim
   path += " -> " + current_node->connections[start_node_connection]->name;
   cost += current_node->weights[start_node_connection];
 
+  time_took = TIME_DELTA(starting_time, NOW);
   return cost;
 }

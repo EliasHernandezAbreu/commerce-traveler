@@ -14,6 +14,6 @@
 
 #include "./../lib/DynamicCT.h"
 
-int DynamicCommerceTraveler::solve(const Graph& graph, std::string& path, int time_limit) const {
+int DynamicCommerceTraveler::solve(const Graph& graph, std::string& path, long int& time_took, long int time_limit) const {
   return 0;
 }

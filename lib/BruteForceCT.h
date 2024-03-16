@@ -25,5 +25,5 @@ class BruteForceCommerceTraveler: public CommerceTraveler {
    * @param time_limit The time limit
    * @returns The resulting cost
   */
-  virtual int solve(const Graph& graph, std::string& path, int time_limit = FIVE_MINUTES) const override;
+  virtual int solve(const Graph& graph, std::string& path, long int& time_took, long int time_limit = FIVE_MINUTES) const override;
 };

@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
       output_file = argv[++param];
     } else if (strcmp(argv[param], "-t") == 0) {
       try {
-        time_limit = std::stoi(argv[++param]);
+        time_limit = std::stoi(argv[++param]) * 1000;
       } catch (...) {
         printf("Option -t must receive a number. Received '%s'", argv[param - 1]);
         return 1;
@@ -71,19 +71,28 @@ int main(int argc, char** argv) {
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
 
-    std::string brute_force_solution;
-    int brute_force_cost = brute_force_ct.solve(*graphs[current_graph], brute_force_solution, time_limit);
+    std::string brute_force_solution = "";
+    long int brute_force_time = 0;
+    int brute_force_cost = brute_force_ct.solve(*graphs[current_graph], brute_force_solution, brute_force_time, time_limit);
 
-    std::string greedy_solution;
-    TIME_POINT greedy_start = NOW;
-    int greedy_cost = greedy_ct.solve(*graphs[current_graph], greedy_solution, time_limit);
-    long int greedy_time = TIME_DELTA(greedy_start, NOW);
+    std::string greedy_solution = "";
+    long int greedy_time = 0;
+    int greedy_cost = greedy_ct.solve(*graphs[current_graph], greedy_solution, greedy_time, time_limit);
 
-    std::string dynamic_solution;
-    int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], dynamic_solution, time_limit);
+    std::string dynamic_solution = "";
+    long int dynamic_time = 0;
+    int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], dynamic_solution, dynamic_time, time_limit);
 
-    printf("File: %s\n", graphs[current_graph]->sourcePath().c_str());
-    printf("Greedy:\nTime: %ldms\nCost: %d\nPath: %s\n", greedy_time, greedy_cost, greedy_solution.c_str());
+    printf("== FILE == : %s\n", graphs[current_graph]->sourcePath().c_str());
+
+    if (brute_force_time == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESIVO", brute_force_cost);
+    else printf("Brute force: Time: %ldms, Cost: %d\n", brute_force_time, brute_force_cost);
+
+    if (greedy_time == -1) printf("Greedy: Time: %s, Cost: %d\n", "EXCESIVO", greedy_cost);
+    else printf("Greedy: Time: %ldms, Cost: %d\n", greedy_time, greedy_cost);
+    
+    if (dynamic_time == -1) printf("Dynamic: Time: %s, Cost: %d\n", "EXCESIVO", dynamic_cost);
+    else printf("Dynamic: Time: %ldms, Cost: %d\n", dynamic_time, dynamic_cost);
   }
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
