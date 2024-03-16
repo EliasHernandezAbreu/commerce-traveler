@@ -45,7 +45,21 @@ class Graph {
   */
   const std::string& sourcePath() const;
 
+  /**
+   * Returns the node at position i
+   * @param i The position to get the node from
+   * @returns The node at position i
+  */
+  const GraphNode* get(int i) const;
+  
+  /**
+   * Returns the size of the graph
+   * @returns The amount of nodes the graph has
+  */
+  int size() const;
+
  private:
   std::vector<GraphNode*> nodes;
   std::string source_path;
+
 };

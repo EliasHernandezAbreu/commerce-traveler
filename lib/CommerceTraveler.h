@@ -25,7 +25,7 @@ class CommerceTraveler {
    * @param graph The graph to solve
    * @param path The resulting path
    * @param time_limit The time limit
-   * @returns The resulting path 
+   * @returns The resulting cost 
   */
-  virtual int solve(const Graph& graph, std::vector<std::string>& path, int time_limit = FIVE_MINUTES) const = 0;
+  virtual int solve(const Graph& graph, std::string& path, int time_limit = FIVE_MINUTES) const = 0;
 };

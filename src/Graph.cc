@@ -12,6 +12,7 @@
 #include "../lib/Graph.h"
 
 Graph::Graph(const std::string& file_path) {
+  source_path = file_path;
   std::ifstream input(file_path);
   if (input.bad()) {
     throw std::runtime_error("Cant open input file");
@@ -45,4 +46,12 @@ Graph::~Graph() {
 
 const std::string& Graph::sourcePath() const {
   return source_path;
+}
+
+const GraphNode* Graph::get(int i) const {
+  return nodes[i];
+}
+
+int Graph::size() const {
+  return nodes.size();
 }

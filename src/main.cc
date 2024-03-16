@@ -23,10 +23,6 @@
 #include "../lib/GreedyCT.h"
 #include "../lib/DynamicCT.h"
 
-#define NOW std::chrono::high_resolution_clock::now()
-#define TIME_POINT std::chrono::system_clock::time_point
-#define TIME_DELTA(t1, t2) std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count()
-
 
 int main(int argc, char** argv) {
   long long time_limit = FIVE_MINUTES;
@@ -75,14 +71,19 @@ int main(int argc, char** argv) {
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
 
-    std::vector<std::string> brute_force_solution;
+    std::string brute_force_solution;
     int brute_force_cost = brute_force_ct.solve(*graphs[current_graph], brute_force_solution, time_limit);
-    std::vector<std::string> greedy_solution;
+
+    std::string greedy_solution;
+    TIME_POINT greedy_start = NOW;
     int greedy_cost = greedy_ct.solve(*graphs[current_graph], greedy_solution, time_limit);
-    std::vector<std::string> dynamic_solution;
+    long int greedy_time = TIME_DELTA(greedy_start, NOW);
+
+    std::string dynamic_solution;
     int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], dynamic_solution, time_limit);
 
     printf("File: %s\n", graphs[current_graph]->sourcePath().c_str());
+    printf("Greedy:\nTime: %ldms\nCost: %d\nPath: %s\n", greedy_time, greedy_cost, greedy_solution.c_str());
   }
 
   for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
