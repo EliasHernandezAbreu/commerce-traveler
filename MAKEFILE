@@ -1,9 +1,9 @@
 b:
-	mkdir -d bin
-	g++ -o bin/program.out src/*
+	mkdir -p bin
+	g++ -o bin/commerce.out src/*
 
 r:
-	bin/program.out
+	bin/commerce.out test
 
 c:
 	rm bin/*

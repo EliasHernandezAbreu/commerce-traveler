@@ -12,8 +12,8 @@
 #include <vector>
 #include <string>
 
-#include "./../lib/dynamic-ct.h"
+#include "./../lib/DynamicCT.h"
 
-int DynamicCommerceTraveler::solve(std::vector<int>& solution) const {
+std::vector<std::string> DynamicCommerceTraveler::solve(const Graph& graph, int time_limit = FIVE_MINUTES) const {
   
 }

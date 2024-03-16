@@ -14,14 +14,14 @@
 #include <vector>
 #include <string>
 
-#include "./commerce-traveler.h"
+#include "./CommerceTraveler.h"
 
 class DynamicCommerceTraveler: public CommerceTraveler {
  public:
   /**
-   * Solves the problem
+   * Solves the commerce traveler problem
    * @param solution The vector in which to store the solution
-   * @returns The cost of the solution 
+   * @returns The resulting path 
   */
-  virtual int solve(std::vector<int>& solution) const override;
+  virtual std::vector<std::string> solve(const Graph& graph, int time_limit = FIVE_MINUTES) const override;
 };
