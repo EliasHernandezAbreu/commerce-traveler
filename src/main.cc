@@ -59,9 +59,10 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  std::vector<Graph> graphs;
+  Graph** graphs;
+  int graphs_size;
   try {
-    graphs = graphsFromFolder(folder_path);
+    graphs = graphsFromFolder(folder_path, graphs_size);
   } catch (...) {
     printf("The path specified (%s) does not lead to a folder!\n", folder_path.c_str());
     return 1;
@@ -71,14 +72,16 @@ int main(int argc, char** argv) {
   GreedyCommerceTraveler greedy_ct;
   DynamicCommerceTraveler dynamic_ct;
 
-  for (Graph current_graph : graphs) {
 
-    
+  for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
 
-    std::vector<std::string> brute_force_solution = brute_force_ct.solve(current_graph, time_limit);
-    std::vector<std::string> greedy_solution = greedy_ct.solve(current_graph, time_limit);
-    std::vector<std::string> dynamic_solution = dynamic_ct.solve(current_graph, time_limit);
+    std::vector<std::string> brute_force_solution = brute_force_ct.solve(*graphs[current_graph], time_limit);
+    std::vector<std::string> greedy_solution = greedy_ct.solve(*graphs[current_graph], time_limit);
+    std::vector<std::string> dynamic_solution = dynamic_ct.solve(*graphs[current_graph], time_limit);
   }
 
+  for (int current_graph = 0; current_graph < graphs_size; current_graph++) {
+    delete graphs[current_graph];
+  }
   return 0;
 }

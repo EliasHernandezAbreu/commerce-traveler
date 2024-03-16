@@ -13,20 +13,22 @@
 
 #include "../lib/utils.h"
 
-std::vector<Graph> graphsFromFolder(const std::string& folder_path) {
-  std::vector<Graph> graphs;
+Graph** graphsFromFolder(const std::string& folder_path, int& graphs_size) {
   if (!std::filesystem::is_directory(folder_path)) {
     throw std::runtime_error("Folder is not a directory!");    
   }
+  
+  graphs_size = std::distance(std::filesystem::directory_iterator{folder_path}, std::filesystem::directory_iterator{});
+  Graph** graphs = new Graph*[graphs_size];
+  int current_entry = 0;
   for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(folder_path)) {
     std::ifstream input_file(entry.path().c_str());
     if (input_file.bad()) {
       printf("Couldn't open file %s.\n", entry.path().c_str());
       continue;
     }
-    printf("hi\n");
-    graphs.push_back(Graph(input_file));
-    printf("bye\n");
+    graphs[current_entry] = new Graph(input_file);
+    current_entry++;
   }
   return graphs;
 }

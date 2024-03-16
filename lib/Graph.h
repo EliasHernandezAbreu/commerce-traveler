@@ -24,6 +24,11 @@ struct GraphNode {
 class Graph {
  public:
   /**
+   * Default constructor: builds an empty graph
+  */
+  Graph() {}
+
+  /**
    * Initializates the object from an input stream
    * @param input The stream to get the definition from
   */

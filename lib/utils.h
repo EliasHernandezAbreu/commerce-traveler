@@ -19,6 +19,6 @@
 /**
  * Constructs graphs from a folder with inputs
  * @param folder_path The name of the folder
- * @returns A vector with the graphs
+ * @returns An array with the graphs
 */
-std::vector<Graph> graphsFromFolder(const std::string& folder_path);
+Graph** graphsFromFolder(const std::string& folder_path, int& graphs_size);
