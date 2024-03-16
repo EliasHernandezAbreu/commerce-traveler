@@ -2,6 +2,10 @@ b:
 	mkdir -p bin
 	g++ -o bin/commerce.out src/*
 
+i:
+	mkdir -p bin
+	g++ -o bin/graph-generator.out graph-generator/main.cc
+
 r:
 	bin/commerce.out test
 
