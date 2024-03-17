@@ -13,8 +13,10 @@
 
 #include <vector>
 #include <string>
+#include <set>
 
 #include "./TravelingSalesman.h"
+#include "utils.h"
 
 class DynamicTravelingSalesman: public TravelingSalesman {
  public:
@@ -24,5 +26,19 @@ class DynamicTravelingSalesman: public TravelingSalesman {
    * @param time_limit The time limit
    * @returns The resulting cost
   */
-  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) const override;
+  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) override;
+
+ private:
+  /**
+   * Recursive function to solve the TSP
+   * @param graph The graph with the nodes
+   * @param position The number of cities added to the solution
+   * @param path The current path
+   * @param mark A number whose bits represent the already visited cities
+  */
+  int recursionTSP(const Graph& graph, int position, int mask, std::string& path);
+
+  TIME_POINT starting_time;
+  long int time_limit;
+  int** DP;
 };

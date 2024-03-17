@@ -26,5 +26,5 @@ class GreedyTravelingSalesman: public TravelingSalesman {
    * @param time_limit The time limit
    * @returns The resulting cost
   */
-  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) const override;
+  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) override;
 };

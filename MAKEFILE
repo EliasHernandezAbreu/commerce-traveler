@@ -7,7 +7,7 @@ i:
 	g++ -o bin/graph-generator.out graph-generator/main.cc
 
 r:
-	bin/tsp.out test -o output -t 5 test
+	bin/tsp.out -o output -t 5 test
 
 c:
 	rm bin/*

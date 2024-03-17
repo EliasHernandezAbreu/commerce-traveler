@@ -26,7 +26,7 @@ class TravelingSalesman {
    * @param time_limit The time limit
    * @returns The resulting cost 
   */
-  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) const = 0;
+  virtual int solve(const Graph& graph, long int time_limit = FIVE_MINUTES) = 0;
 
   /**
    * Gets the time it took to solve the last problem
@@ -41,6 +41,6 @@ class TravelingSalesman {
   const std::string& getPath() const;
 
  protected:
-  mutable std::string path;
-  mutable long int time_took;
+  std::string path;
+  long int time_took;
 };

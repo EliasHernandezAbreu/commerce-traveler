@@ -18,7 +18,7 @@
 
 #define PRINTPATH(p, n) for(int i = 0; i < n; i++) printf("%d " ,p[i]); printf("\n")
 
-int BruteForceTravelingSalesman::solve(const Graph& graph, long int time_limit) const {
+int BruteForceTravelingSalesman::solve(const Graph& graph, long int time_limit) {
   TIME_POINT starting_time = NOW;
   int* current_path = new int[graph.getSize() + 1]();
   int* best_path = new int[graph.getSize() + 1]();

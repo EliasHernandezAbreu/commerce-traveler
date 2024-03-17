@@ -14,7 +14,7 @@
 #include "../lib/utils.h"
 #include "../lib/GreedyTS.h"
 
-int GreedyTravelingSalesman::solve(const Graph& graph, long int time_limit) const {
+int GreedyTravelingSalesman::solve(const Graph& graph, long int time_limit) {
   TIME_POINT starting_time = NOW;
   std::set<int> used_nodes;
   int current_node = 0;
