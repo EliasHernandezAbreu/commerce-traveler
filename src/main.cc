@@ -74,9 +74,9 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  BruteForceTravelingSalesman brute_force_ct;
-  GreedyTravelingSalesman greedy_ct;
-  DynamicTravelingSalesman dynamic_ct;
+  BruteForceTravelingSalesman brute_force_ts;
+  GreedyTravelingSalesman greedy_ts;
+  DynamicTravelingSalesman dynamic_ts;
 
   if (output_file != "") {
     out << "| Instance | Cost brute force | Time brute force (ms) | Cost greedy | Time greedy (ms) | Cost dynamic | Time dynamic (ms) |\n"
@@ -87,32 +87,32 @@ int main(int argc, char** argv) {
 
     printf("Starting file %s.\n", graphs[current_graph]->getSourcePath().c_str());
 
-    int brute_force_cost = brute_force_ct.solve(*graphs[current_graph], time_limit);
-    int greedy_cost = greedy_ct.solve(*graphs[current_graph], time_limit);
-    int dynamic_cost = dynamic_ct.solve(*graphs[current_graph], time_limit);
+    int brute_force_cost = brute_force_ts.solve(*graphs[current_graph], time_limit);
+    int greedy_cost = greedy_ts.solve(*graphs[current_graph], time_limit);
+    int dynamic_cost = dynamic_ts.solve(*graphs[current_graph], time_limit);
 
     if (output_file == "") {
       printf("\n== FILE == : %s\n", graphs[current_graph]->getSourcePath().c_str());
 
-      if (brute_force_ct.getTimeTook() == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESSIVE", brute_force_cost);
-      else printf("Brute force: Time: %ldms, Cost: %d\n", brute_force_ct.getTimeTook(), brute_force_cost);
+      if (brute_force_ts.getTimeTook() == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESSIVE", brute_force_cost);
+      else printf("Brute force: Time: %ldms, Cost: %d\n", brute_force_ts.getTimeTook(), brute_force_cost);
       // printf("Path: %s", brute_force_ct.getPath().c_str());
 
-      if (greedy_ct.getTimeTook() == -1) printf("Greedy: Time: %s, Cost: %d\n", "EXCESSIVE", greedy_cost);
-      else printf("Greedy: Time: %ldms, Cost: %d\n", greedy_ct.getTimeTook(), greedy_cost);
+      if (greedy_ts.getTimeTook() == -1) printf("Greedy: Time: %s, Cost: %d\n", "EXCESSIVE", greedy_cost);
+      else printf("Greedy: Time: %ldms, Cost: %d\n", greedy_ts.getTimeTook(), greedy_cost);
       // printf("Path: %s", greedy_ct.getPath().c_str());
       
-      if (dynamic_ct.getTimeTook() == -1) printf("Dynamic: Time: %s, Cost: %d\n", "EXCESSIVE", dynamic_cost);
-      else printf("Dynamic: Time: %ldms, Cost: %d\n", dynamic_ct.getTimeTook(), dynamic_cost);
+      if (dynamic_ts.getTimeTook() == -1) printf("Dynamic: Time: %s, Cost: %d\n", "EXCESSIVE", dynamic_cost);
+      else printf("Dynamic: Time: %ldms, Cost: %d\n", dynamic_ts.getTimeTook(), dynamic_cost);
       // printf("Path: %s", dynamic_ct.getPath().c_str());
     } else {
       out << "| "  << graphs[current_graph]->getSourcePath()
           << " | " << brute_force_cost
-          << " | " << (brute_force_ct.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(brute_force_ct.getTimeTook()).c_str())
+          << " | " << (brute_force_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(brute_force_ts.getTimeTook()).c_str())
           << " | " + std::to_string(greedy_cost)
-          << " | " << (greedy_ct.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(greedy_ct.getTimeTook()).c_str())
+          << " | " << (greedy_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(greedy_ts.getTimeTook()).c_str())
           << " | " + std::to_string(dynamic_cost)
-          << " | " << (dynamic_ct.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(dynamic_ct.getTimeTook()).c_str()) 
+          << " | " << (dynamic_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(dynamic_ts.getTimeTook()).c_str()) 
           << " |\n";
       out.flush();
     }

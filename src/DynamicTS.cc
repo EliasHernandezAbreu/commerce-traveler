@@ -22,22 +22,32 @@ int DynamicTravelingSalesman::solve(const Graph& graph, long int time_limit) {
   int n = graph.getSize();
   this->time_limit = time_limit;
   DP = new int*[n + 1];
+  parent = new int*[n + 1];
   for (int i = 0; i < n + 1; i++) {
     DP[i] = new int[1 << (n + 1)];
+    parent[i] = new int[1 << (n + 1)];
     for (int j = 0; j < (1 << (n + 1)); j++) {
       DP[i][j] = -1;
+      parent[i][j] = -1;
     }
   }
-  path = "0";
-  int cost = recursionTSP(graph, 0, 1, path);
-  time_took = TIME_DELTA(starting_time, NOW);
+  int cost = recursionTSP(graph, 0, 1);
 
-  printf("path: %s\n", path.c_str());
+  path = graph.getNodeName(0);
+  int current_node = 0;
+  int current_mask = 1;
+  while (parent[current_node][current_mask] != -1) {
+    path += " -> " + graph.getNodeName(parent[current_node][current_mask]);
+    current_node = parent[current_node][current_mask];
+    current_mask = current_mask | (1 << current_node);
+  }
+  path += " -> " + graph.getNodeName(0);
+
+  time_took = TIME_DELTA(starting_time, NOW);
   return cost;
 }
 
-int DynamicTravelingSalesman::recursionTSP(const Graph& graph, int position, int mask, std::string& path) {
-  path += " <- " + std::to_string(position);
+int DynamicTravelingSalesman::recursionTSP(const Graph& graph, int position, int mask) {
   if (TIME_DELTA(starting_time, NOW) > time_limit) {
     return graph.getWeight(position, 0);
   }
@@ -48,19 +58,16 @@ int DynamicTravelingSalesman::recursionTSP(const Graph& graph, int position, int
     return DP[position][mask];
   }
  
-  int res = MAX;
-  int res_node = 0;
-  std::string newpath = "";
+  int answer = MAX;
   for (int j = 0; j < graph.getSize(); j++) {
     if (!(mask & (1 << j))) {
-      int next_res = recursionTSP(graph, j, mask | (1 << j), newpath) + graph.getWeight(j, position);
-      if (next_res < res) {
-        res = next_res;
-        res_node = j;
+      int current_value = recursionTSP(graph, j, mask | (1 << j)) + graph.getWeight(j, position);
+      if (current_value < answer) {
+        answer = current_value;
+        parent[position][mask] = j;
       }
     }
   }
-  DP[position][mask] = res;
-  path += " <- " + newpath;
-  return res;
+  DP[position][mask] = answer;
+  return answer;
 }

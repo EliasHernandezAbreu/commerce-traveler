@@ -33,12 +33,12 @@ class DynamicTravelingSalesman: public TravelingSalesman {
    * Recursive function to solve the TSP
    * @param graph The graph with the nodes
    * @param position The number of cities added to the solution
-   * @param path The current path
    * @param mark A number whose bits represent the already visited cities
   */
-  int recursionTSP(const Graph& graph, int position, int mask, std::string& path);
+  int recursionTSP(const Graph& graph, int position, int mask);
 
   TIME_POINT starting_time;
   long int time_limit;
   int** DP;
+  int** parent;
 };
