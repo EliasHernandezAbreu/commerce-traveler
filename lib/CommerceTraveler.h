@@ -41,6 +41,6 @@ class CommerceTraveler {
   const std::string& getPath() const;
 
  protected:
-  std::string path;
-  long int time_took;
+  mutable std::string path;
+  mutable long int time_took;
 };

@@ -12,52 +12,45 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <set>
 
 #include "../lib/utils.h"
 #include "./../lib/GreedyCT.h"
 
 int GreedyCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
   TIME_POINT starting_time = NOW;
-  std::vector<const GraphNode*> used_nodes;
-  const GraphNode* current_node = graph.get(0);
-  path = current_node->name;
+  std::set<int> used_nodes;
+  int current_node = 0;
+  path = graph.getNodeName(0);
   int cost = 0;
 
-
-  for (int current_node_index = 1; current_node_index < graph.size(); current_node_index++) {
+  for (int current_node_index = 1; current_node_index < graph.getSize(); current_node_index++) {
     if (TIME_DELTA(starting_time, NOW) > time_limit) {
       time_took = -1;
       return cost;
     }
 
-    used_nodes.push_back(current_node);
+    used_nodes.insert(current_node);
     
     int best_connection = 0;
-    for (int current_connection = 1; current_connection < current_node->connections.size(); current_connection++) {
-      if (std::find(used_nodes.begin(), used_nodes.end(), current_node->connections[current_connection]) != used_nodes.end()) {
-        // ALREADY USED
+    for (int current_connection = 1; current_connection < graph.getSize(); current_connection++) {
+      if (used_nodes.find(current_connection) != used_nodes.end()) {
+        // used node
         continue;
       }
-      if (current_node->weights[current_connection] < current_node->weights[best_connection] ||
-          std::find(used_nodes.begin(), used_nodes.end(), current_node->connections[best_connection]) != used_nodes.end()) {
+      if (graph.getWeight(current_node, current_connection) < graph.getWeight(current_node, best_connection) ||
+          used_nodes.find(best_connection) != used_nodes.end()) {
         best_connection = current_connection;
       }
     }
 
-    cost += current_node->weights[best_connection];
-    current_node = current_node->connections[best_connection];
-    path += " -> " + current_node->name;
+    cost += graph.getWeight(current_node, best_connection);
+    path += " -> " + graph.getNodeName(best_connection);
+    current_node = best_connection;
   }
 
-  int start_node_connection;
-  for (int i = 0; i < current_node->connections.size(); i++) {
-    if (current_node->connections[i] == graph.get(0)) {
-      start_node_connection = i;
-      break;
-    }
-  }
-  path += " -> " + current_node->connections[start_node_connection]->name;
-  cost += current_node->weights[start_node_connection];
+  cost += graph.getWeight(current_node, 0);
+  path += " -> " + graph.getNodeName(0);
 
   time_took = TIME_DELTA(starting_time, NOW);
   return cost;
