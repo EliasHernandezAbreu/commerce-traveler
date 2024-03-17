@@ -37,8 +37,14 @@ class DynamicTravelingSalesman: public TravelingSalesman {
   */
   int recursionTSP(const Graph& graph, int position, int mask);
 
-  TIME_POINT starting_time;
-  long int time_limit;
-  int** DP;
-  int** parent;
+  TIME_POINT starting_time; // Time the execution started at
+  long int time_limit; // The limit of time of the execution
+  int** DP; // Table that stores partial results where each row is a node and each column a bitmask
+  int** parent; // Table that stores the parent of each node where each row is a node and each column a bitmask
+
+  /**
+   * The bitmask seves the purpose of a set: bits set to 1 mean the node of that position
+   * is already taken in the given sequence.
+   */
+
 };
