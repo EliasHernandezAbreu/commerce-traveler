@@ -16,7 +16,7 @@
 #include "../lib/utils.h"
 #include "./../lib/GreedyCT.h"
 
-int GreedyCommerceTraveler::solve(const Graph& graph, std::string& path, long int& time_took, long int time_limit) const {
+int GreedyCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
   TIME_POINT starting_time = NOW;
   std::vector<const GraphNode*> used_nodes;
   const GraphNode* current_node = graph.get(0);

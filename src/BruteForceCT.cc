@@ -14,6 +14,6 @@
 
 #include "./../lib/BruteForceCT.h"
 
-int BruteForceCommerceTraveler::solve(const Graph& graph, std::string& path, long int& time_took, long int time_limit) const {
+int BruteForceCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
   return 0;
 }

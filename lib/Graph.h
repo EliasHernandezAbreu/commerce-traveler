@@ -11,15 +11,8 @@
 
 #pragma once
 
-#include <vector>
 #include <string>
 #include <fstream>
-
-struct GraphNode {
-  std::string name;
-  std::vector<GraphNode*> connections;
-  std::vector<int> weights;
-};
 
 class Graph {
  public:
@@ -40,26 +33,36 @@ class Graph {
   ~Graph();
 
   /**
+   * Returns the weight between two nodes
+   * @param from One of the nodes
+   * @param to The other node
+   * @returns The weight of the link or -1 if doesnt exist
+  */
+  int getWeight(int from, int to) const;
+
+  /**
+   * Returns the name of a node
+   * @param node The node to get the name of
+   * @returns The name of the node
+  */
+ 
+  const std::string& getNodeName(int node) const;
+  /**
    * Returns a string with the path to the file with this graph information
    * @returns The path to the source file of the graph
   */
-  const std::string& sourcePath() const;
-
-  /**
-   * Returns the node at position i
-   * @param i The position to get the node from
-   * @returns The node at position i
-  */
-  const GraphNode* get(int i) const;
+  const std::string& getSourcePath() const;
   
   /**
    * Returns the size of the graph
    * @returns The amount of nodes the graph has
   */
-  int size() const;
+  int getSize() const;
 
  private:
-  std::vector<GraphNode*> nodes;
+  int size;
+  int** weights;
+  std::string* names;
   std::string source_path;
 
 };
