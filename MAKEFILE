@@ -1,13 +1,13 @@
 b:
 	mkdir -p bin
-	g++ -o bin/commerce.out src/*
+	g++ -o bin/tsp.out src/*
 
 i:
 	mkdir -p bin
 	g++ -o bin/graph-generator.out graph-generator/main.cc
 
 r:
-	bin/commerce.out test
+	bin/tsp.out test -o output -t 5 test
 
 c:
 	rm bin/*

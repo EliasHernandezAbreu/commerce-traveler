@@ -1,6 +1,6 @@
 /**
  * DAA - Lab 6
- * The commerce traveler
+ * The Traveling salesman
  * 
  * @author Elías Hernández Abreu <alu0101487137@ull.edu.es>
  * @since 14/03/24
@@ -19,9 +19,9 @@
 #include "../lib/Graph.h"
 #include "../lib/utils.h"
 
-#include "../lib/BruteForceCT.h"
-#include "../lib/GreedyCT.h"
-#include "../lib/DynamicCT.h"
+#include "../lib/BruteForceTS.h"
+#include "../lib/GreedyTS.h"
+#include "../lib/DynamicTS.h"
 
 
 int main(int argc, char** argv) {
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
   for (int param = 1; param < argc; ++param) {
     if (strcmp(argv[param], "-h") == 0) {
       printf("Usage: %s [options] <inputfolder>\n", argv[0]);
-      printf("Solves the commerce traveler problem using brute force, greedy and dynamic algorithms.\n");
+      printf("Solves the Traveling salesman problem using brute force, greedy and dynamic algorithms.\n");
       printf("-h : Displays this message.\n");
       printf("-o <filename> : Writes the output as a markdown file to <filename>.\n");
       printf("-t <timelimit> : Sets the time limit of the executions (in seconds).\n");
@@ -74,9 +74,9 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  BruteForceCommerceTraveler brute_force_ct;
-  GreedyCommerceTraveler greedy_ct;
-  DynamicCommerceTraveler dynamic_ct;
+  BruteForceTravelingSalesman brute_force_ct;
+  GreedyTravelingSalesman greedy_ct;
+  DynamicTravelingSalesman dynamic_ct;
 
   if (output_file != "") {
     out << "| Instance | Cost brute force | Time brute force (ms) | Cost greedy | Time greedy (ms) | Cost dynamic | Time dynamic (ms) |\n"

@@ -1,6 +1,6 @@
 /**
  * DAA - Lab 6
- * The commerce traveler
+ * The Traveling salesman
  * 
  * @author Elías Hernández Abreu <alu0101487137@ull.edu.es>
  * @since 14/03/24

@@ -1,24 +1,24 @@
 /**
  * DAA - Lab 6
- * The commerce traveler
+ * The Traveling salesman
  * 
  * @author Elías Hernández Abreu <alu0101487137@ull.edu.es>
  * @since 14/03/24
  * 
  * 
- * @file Commerce traveler problem solver using brute force
+ * @file Traveling salesman problem solver using brute force
 */
 
 #include <set>
 
-#include "../lib/BruteForceCT.h"
+#include "../lib/BruteForceTS.h"
 #include "../lib/utils.h"
 
 #define MAX_INT 2147483647
 
 #define PRINTPATH(p, n) for(int i = 0; i < n; i++) printf("%d " ,p[i]); printf("\n")
 
-int BruteForceCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
+int BruteForceTravelingSalesman::solve(const Graph& graph, long int time_limit) const {
   TIME_POINT starting_time = NOW;
   int* current_path = new int[graph.getSize() + 1]();
   int* best_path = new int[graph.getSize() + 1]();

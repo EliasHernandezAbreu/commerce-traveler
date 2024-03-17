@@ -1,12 +1,12 @@
 /**
  * DAA - Lab 6
- * The commerce traveler
+ * The Traveling salesman
  * 
  * @author Elías Hernández Abreu <alu0101487137@ull.edu.es>
  * @since 14/03/24
  * 
  * 
- * @file Commerce traveler problem solver parent class
+ * @file Traveling salesman problem solver parent class
 */
 
 #pragma once
@@ -18,10 +18,10 @@
 
 #define FIVE_MINUTES (long long)300000
 
-class CommerceTraveler {
+class TravelingSalesman {
  public:
   /**
-   * Solves the commerce traveler problem
+   * Solves the Traveling salesman problem
    * @param graph The graph to solve
    * @param time_limit The time limit
    * @returns The resulting cost 

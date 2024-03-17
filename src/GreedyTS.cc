@@ -1,20 +1,20 @@
 /**
  * DAA - Lab 6
- * The commerce traveler
+ * The Traveling salesman
  * 
  * @author Elías Hernández Abreu <alu0101487137@ull.edu.es>
  * @since 14/03/24
  * 
  * 
- * @file Commerce traveler problem solver using greedy algorithm
+ * @file Traveling salesman problem solver using greedy algorithm
 */
 
 #include <set>
 
 #include "../lib/utils.h"
-#include "../lib/GreedyCT.h"
+#include "../lib/GreedyTS.h"
 
-int GreedyCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
+int GreedyTravelingSalesman::solve(const Graph& graph, long int time_limit) const {
   TIME_POINT starting_time = NOW;
   std::set<int> used_nodes;
   int current_node = 0;

@@ -1,6 +1,6 @@
-# Commerce traveler
+# Traveling salesman
 
-Commerce traveler problem using different approaches.
+Traveling salesman problem using different approaches.
 
 # Reference
 
