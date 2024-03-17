@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 
-#include "./../lib/DynamicCT.h"
+#include "../lib/DynamicCT.h"
 
 int DynamicCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
   return 0;

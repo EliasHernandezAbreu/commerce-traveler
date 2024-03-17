@@ -9,13 +9,10 @@
  * @file Commerce traveler problem solver using greedy algorithm
 */
 
-#include <vector>
-#include <string>
-#include <algorithm>
 #include <set>
 
 #include "../lib/utils.h"
-#include "./../lib/GreedyCT.h"
+#include "../lib/GreedyCT.h"
 
 int GreedyCommerceTraveler::solve(const Graph& graph, long int time_limit) const {
   TIME_POINT starting_time = NOW;
