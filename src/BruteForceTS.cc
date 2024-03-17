@@ -34,7 +34,7 @@ int BruteForceTravelingSalesman::solve(const Graph& graph, long int time_limit) 
       delete[] best_path;
       return best_cost;
     }
-    for (int node_position = 0; node_position <= graph.getSize(); node_position++) {
+    for (int node_position = 1; node_position <= graph.getSize(); node_position++) {
       if (node_position == graph.getSize()) {
         time_took = TIME_DELTA(starting_time, NOW);
         path = graph.getNodeName(best_path[0]);

@@ -9,11 +9,21 @@
  * @file Traveling salesman problem solver using a dynamic algorithm
 */
 
-#include <vector>
-#include <string>
-
 #include "../lib/DynamicTS.h"
 
+
 int DynamicTravelingSalesman::solve(const Graph& graph, long int time_limit) const {
+  int size = graph.getSize();
+  int** table = new int*[size];
+  for (int i = 0; i < size; i++) {
+    table[i] = new int[size];
+  }
+
+  
+
+  for (int i = 0; i < size; i++) {
+    delete[] table[i];
+  }
+  delete[] table;
   return 0;
 }
