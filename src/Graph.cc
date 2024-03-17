@@ -22,10 +22,13 @@ Graph::Graph(const std::string& file_path) {
   names = new std::string[size];
   weights = new int*[size];
 
+  for (int i = 0; i < size; i++) {
+    weights[i] = new int[size];
+  }
+  
   for (int current_node = 0; current_node < size; current_node++) {
-    weights[current_node] = new int[size];
     weights[current_node][current_node] = -1;
-
+  
     for (int current_link = current_node + 1; current_link < size; current_link++) {
       input >> names[current_node];
       input >> names[current_link];
