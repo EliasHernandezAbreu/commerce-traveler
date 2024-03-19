@@ -123,29 +123,30 @@ int main(int argc, char** argv) {
 
 
   }
-  for (int counter = 0; counter < per_node_brute_mean.size(); counter++) {
+  for (std::pair<int, std::pair<long int, int>> pair : per_node_brute_mean) {
+    int node = pair.first;
     if (output_file == "") {
-      printf("\n== NODES == : %s\n", std::to_string(per_node_brute_mean.get));
+      printf("\n== NODES == : %s\n", std::to_string(node).c_str());
 
-      if (brute_force_ts.getTimeTook() == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESSIVE", brute_force_cost);
-      else printf("Brute force: Time: %ldms, Cost: %d\n", brute_force_ts.getTimeTook(), brute_force_cost);
+      if (brute_force_ts.getTimeTook() == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESSIVE", 1);
+      else printf("Brute force: Time: %ldms, Cost: %d\n", per_node_brute_mean[node].first / per_node_brute_mean[node].second, 1);
       // printf("Path: %s", brute_force_ct.getPath().c_str());
 
-      if (greedy_ts.getTimeTook() == -1) printf("Greedy: Time: %s, Cost: %d\n", "EXCESSIVE", greedy_cost);
-      else printf("Greedy: Time: %ldms, Cost: %d\n", greedy_ts.getTimeTook(), greedy_cost);
+      if (greedy_ts.getTimeTook() == -1) printf("Greedy: Time: %s, Cost: %d\n", "EXCESSIVE", 1);
+      else printf("Greedy: Time: %ldms, Cost: %d\n", per_node_greedy_mean[node].first / per_node_greedy_mean[node].second, 1);
       // printf("Path: %s", greedy_ct.getPath().c_str());
       
-      if (dynamic_ts.getTimeTook() == -1) printf("Dynamic: Time: %s, Cost: %d\n", "EXCESSIVE", dynamic_cost);
-      else printf("Dynamic: Time: %ldms, Cost: %d\n", dynamic_ts.getTimeTook(), dynamic_cost);
+      if (dynamic_ts.getTimeTook() == -1) printf("Dynamic: Time: %s, Cost: %d\n", "EXCESSIVE", 1);
+      else printf("Dynamic: Time: %ldms, Cost: %d\n", per_node_dynamic_mean[node].first / per_node_dynamic_mean[node].second, 1);
       // printf("Path: %s", dynamic_ct.getPath().c_str());
     } else {
-      out << "| "  << graphs[current_graph]->getSourcePath()
-          << " | " << brute_force_cost
-          << " | " << (brute_force_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(brute_force_ts.getTimeTook()).c_str())
-          << " | " + std::to_string(greedy_cost)
-          << " | " << (greedy_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(greedy_ts.getTimeTook()).c_str())
-          << " | " + std::to_string(dynamic_cost)
-          << " | " << (dynamic_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(dynamic_ts.getTimeTook()).c_str()) 
+      out << "| "  << std::to_string(node).c_str()
+          << " | " << std::to_string(1).c_str()
+          << " | " << (brute_force_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(per_node_brute_mean[node].first / per_node_brute_mean[node].second).c_str())
+          << " | " << std::to_string(1).c_str()
+          << " | " << (greedy_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(per_node_greedy_mean[node].first / per_node_greedy_mean[node].second).c_str())
+          << " | " << std::to_string(1).c_str()
+          << " | " << (dynamic_ts.getTimeTook() == -1 ? "EXCESSIVE" : std::to_string(per_node_dynamic_mean[node].first / per_node_dynamic_mean[node].second).c_str()) 
           << " |\n";
       out.flush();
     }
