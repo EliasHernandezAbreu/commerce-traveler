@@ -15,6 +15,7 @@
 #include <filesystem>
 #include <fstream>
 #include <cstring>
+#include <map>
 
 #include "../lib/Graph.h"
 #include "../lib/utils.h"
@@ -78,8 +79,13 @@ int main(int argc, char** argv) {
   GreedyTravelingSalesman greedy_ts;
   DynamicTravelingSalesman dynamic_ts;
 
+  // int is node amount, pair first is total time, pair second is amount of executions
+  std::map<int, std::pair<long int, int>> per_node_brute_mean;
+  std::map<int, std::pair<long int, int>> per_node_greedy_mean;
+  std::map<int, std::pair<long int, int>> per_node_dynamic_mean;
+
   if (output_file != "") {
-    out << "| Instance | Cost brute force | Time brute force (ms) | Cost greedy | Time greedy (ms) | Cost dynamic | Time dynamic (ms) |\n"
+    out << "| Nodes | Cost brute force | Time brute force (ms) | Cost greedy | Time greedy (ms) | Cost dynamic | Time dynamic (ms) |\n"
         << "| -------- | ---------------- | --------------------- | ----------- | ---------------- | ------------ | ----------------- |\n";
   }
 
@@ -91,8 +97,35 @@ int main(int argc, char** argv) {
     int greedy_cost = greedy_ts.solve(*graphs[current_graph], time_limit);
     int dynamic_cost = dynamic_ts.solve(*graphs[current_graph], time_limit);
 
+    int current_node_amount = graphs[current_graph]->getSize();
+    if (per_node_brute_mean.count(current_node_amount)) {
+      per_node_brute_mean[current_node_amount].first += brute_force_ts.getTimeTook();
+      per_node_brute_mean[current_node_amount].second += 1;
+    } else {
+      per_node_brute_mean.emplace(current_node_amount, std::pair<int, int>(brute_force_ts.getTimeTook(), 1));
+    }
+
+    int current_node_amount = graphs[current_graph]->getSize();
+    if (per_node_greedy_mean.count(current_node_amount)) {
+      per_node_greedy_mean[current_node_amount].first += brute_force_ts.getTimeTook();
+      per_node_greedy_mean[current_node_amount].second += 1;
+    } else {
+      per_node_greedy_mean.emplace(current_node_amount, std::pair<int, int>(brute_force_ts.getTimeTook(), 1));
+    }
+
+    int current_node_amount = graphs[current_graph]->getSize();
+    if (per_node_dynamic_mean.count(current_node_amount)) {
+      per_node_dynamic_mean[current_node_amount].first += brute_force_ts.getTimeTook();
+      per_node_dynamic_mean[current_node_amount].second += 1;
+    } else {
+      per_node_dynamic_mean.emplace(current_node_amount, std::pair<int, int>(brute_force_ts.getTimeTook(), 1));
+    }
+
+
+  }
+  for (int counter = 0; counter < per_node_brute_mean.size(); counter++) {
     if (output_file == "") {
-      printf("\n== FILE == : %s\n", graphs[current_graph]->getSourcePath().c_str());
+      printf("\n== NODES == : %s\n", std::to_string(per_node_brute_mean.get));
 
       if (brute_force_ts.getTimeTook() == -1) printf("Brute force: Time: %s, Cost: %d\n", "EXCESSIVE", brute_force_cost);
       else printf("Brute force: Time: %ldms, Cost: %d\n", brute_force_ts.getTimeTook(), brute_force_cost);
